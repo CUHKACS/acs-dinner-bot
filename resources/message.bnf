@@ -1,0 +1,14 @@
+
+(* Dinner-bot Request EBNF Grammar *)
+
+Message = <("Dinner"|"dinner")> [<#" +"> Filter {<FilterDelim> Filter}];
+
+FilterDelim = #", +";
+
+Filter = ExcludeTag
+       | ContainsTag;
+
+ExcludeTag = <#"no +"> Tag;
+ContainsTag = <#"(is|in) +"> Tag;
+
+Tag = #"(\p{L}| )+";
